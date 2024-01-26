@@ -8,6 +8,11 @@ public class Customer extends Person {
 		super(name, firstName, address);
 		this.contactNumber = contactNumber;
 	}
+	
+	public Customer() {
+		super("unknown", "unknown", "unknown");
+		this.contactNumber = "unknown";
+	}
 
 	public String getContactNumber() {
 		return contactNumber;
@@ -15,18 +20,6 @@ public class Customer extends Person {
 
 	public void setContactNumber(String contactNumber) {
 		this.contactNumber = contactNumber;
-	}
-	
-	public void createOrder() {
-		
-	}
-	
-	public void modifyOrder() {
-		
-	}
-	
-	public void removeOrder() {
-		
 	}
 
 	@Override

@@ -1,5 +1,10 @@
 package fr.fms.entities;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.time.format.DateTimeFormatter;
+
 public class Bill {
 
 	private int billNumber;
@@ -9,7 +14,7 @@ public class Bill {
 	public Bill(int billNumber, String paymentType, Order order) {
 		this.billNumber = billNumber;
 		this.paymentType = paymentType;
-		this.order = order;
+		this.order = new Order(order.getOrderNumber(), order.getDishesList(), order.getDate(), order.getCustomer());
 	}
 
 	public int getBillNumber() {
@@ -28,8 +33,34 @@ public class Bill {
 		this.paymentType = paymentType;
 	}
 	
-	public void showBill() {
-		
+	public Order getOrder() {
+		return order;
+	}
+
+	public void setOrder(Order order) {
+		this.order = order;
+	}
+
+	//méthode pour éditer la note
+	public void showBill(Order order) {
+		try {
+			BufferedWriter bill = new BufferedWriter(new FileWriter("note.txt", true));
+			
+			bill.write("---------------- Note du menu " + order.getOrderNumber() + " ----------------");
+			bill.write(this.getBillNumber() + "\t" + "Client : " + order.getCustomer());
+			
+			DateTimeFormatter df = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+			String dateOrder = order.getDate().format(df);
+			bill.write(dateOrder);
+			
+			for(String dish : order.getDishesList()) {
+				bill.write(dish + "\n");
+			}
+			
+			bill.close();
+		}catch(IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
