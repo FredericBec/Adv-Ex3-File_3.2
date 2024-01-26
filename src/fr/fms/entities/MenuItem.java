@@ -6,12 +6,17 @@ public class MenuItem {
 
 	private String type;
 	private ArrayList<String> menuItemList = new ArrayList<String>();
-	private Order order;
+	private Menu menu;
 	
-	public MenuItem(String type, ArrayList<String> menuItemList, Order order) {
+	public MenuItem(String type, ArrayList<String> menuItemList) {
 		this.type = type;
 		this.menuItemList = menuItemList;
-		this.order = order;
+	}
+
+	public MenuItem(String type, ArrayList<String> menuItemList, Menu menu) {
+		this.type = type;
+		this.menuItemList = menuItemList;
+		this.menu = menu;
 	}
 
 	public String getType() {
@@ -30,7 +35,16 @@ public class MenuItem {
 		this.menuItemList = menuItemList;
 	}
 	
+	public Menu getMenu() {
+		return menu;
+	}
+
+	public void setMenu(Menu menu) {
+		this.menu = menu;
+	}
+
 	public void addMenuItem() {
+		
 		
 	}
 

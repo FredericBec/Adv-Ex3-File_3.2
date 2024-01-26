@@ -22,8 +22,24 @@ public class Menu {
 		this.name = name;
 	}
 	
-	public void composeMenu() {
-		
+	public Order getOrder() {
+		return order;
+	}
+
+	public void setOrder(Order order) {
+		this.order = order;
+	}
+
+	public ArrayList<String> getMenuItemList() {
+		return menuItemList;
+	}
+
+	public void setMenuItemList(ArrayList<String> menuItemList) {
+		this.menuItemList = menuItemList;
+	}
+
+	public void composeMenu(ArrayList<String> menuItemList) {
+		setMenuItemList(menuItemList);
 	}
 
 	@Override
