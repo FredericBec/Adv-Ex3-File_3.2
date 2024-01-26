@@ -1,7 +1,11 @@
 package fr.fms.test;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
+import java.util.Scanner;
 
+import fr.fms.entities.Customer;
+import fr.fms.entities.Menu;
 import fr.fms.entities.MenuItem;
 
 public class TestResto {
@@ -14,6 +18,40 @@ public class TestResto {
 
 	public static void main(String[] args) {
 		init();
+		MenuItem starters = new MenuItem("Entrées", starter);
+		MenuItem dishes = new MenuItem("Plats", dish);
+		MenuItem sideDishes = new MenuItem("Accompagnements", sideDish);
+		MenuItem drinks = new MenuItem("Boissons", drink);
+		MenuItem desserts = new MenuItem("Desserts", dessert);
+		
+		Scanner scan = new Scanner(System.in);
+		Customer newCustomer = new Customer();
+		try {
+			System.out.println("Quel est votre nom :");
+			newCustomer.setName(scan.nextLine());
+		}catch(InputMismatchException e) {
+			System.out.println("Erreur de frappe :" +e.getMessage());
+		}
+		System.out.println("Quel est votre prénom :");
+		newCustomer.setFirstName(scan.nextLine());
+		System.out.println("Combien de menus voulez-vous ?");
+		int nbrOrder = scan.nextInt();
+		
+		for(int i = 0; i < nbrOrder; i++) {
+			Menu newMenu = new Menu();
+			ArrayList<String> menuList = new ArrayList<String>();
+			menuList.add(newMenu.composeMenu(scan, starter, starters.getType()));
+			menuList.add(newMenu.composeMenu(scan, dish, dishes.getType()));
+			menuList.add(newMenu.composeMenu(scan, sideDish, sideDishes.getType()));
+			menuList.add(newMenu.composeMenu(scan, drink, drinks.getType()));
+			menuList.add(newMenu.composeMenu(scan, dessert, desserts.getType()));
+
+			newMenu.setName(newCustomer.getName());
+			newMenu.setMenuItemList(menuList);
+			System.out.println(newMenu);
+		}
+		
+		scan.close();
 	}
 	
 	//Initialisation du resto
@@ -47,18 +85,6 @@ public class TestResto {
 		dessert.add("Cheesecake");
 		dessert.add("Tarte au citron");
 		dessert.add("Aucun");
-		
-		MenuItem starters = new MenuItem("Entrées", starter);
-		MenuItem dishes = new MenuItem("Plats", dish);
-		MenuItem sideDishes = new MenuItem("Accompagnements", sideDish);
-		MenuItem drinks = new MenuItem("Boissons", drink);
-		MenuItem desserts = new MenuItem("Desserts", dessert);
-		
-		System.out.println(starters);
-		System.out.println(dishes);
-		System.out.println(sideDishes);
-		System.out.println(drinks);
-		System.out.println(desserts);
 	}
 
 }
