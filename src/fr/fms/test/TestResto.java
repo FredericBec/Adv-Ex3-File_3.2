@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import fr.fms.entities.Bill;
 import fr.fms.entities.Customer;
 import fr.fms.entities.Menu;
 import fr.fms.entities.MenuItem;
@@ -49,6 +50,8 @@ public class TestResto {
 			newMenu.setName(newCustomer.getName());
 			newMenu.setMenuItemList(menuList);
 			System.out.println(newMenu);
+			
+			//Bill newNote = new Bill((i+1), new Order());
 		}
 		
 		scan.close();

@@ -16,6 +16,11 @@ public class Bill {
 		this.paymentType = paymentType;
 		this.order = new Order(order.getOrderNumber(), order.getDishesList(), order.getDate(), order.getCustomer());
 	}
+	
+	public Bill(int billNumber, Order order) {
+		this.billNumber = billNumber;
+		this.order = new Order(order.getOrderNumber(), order.getDishesList(), order.getDate(), order.getCustomer());
+	}
 
 	public int getBillNumber() {
 		return billNumber;
